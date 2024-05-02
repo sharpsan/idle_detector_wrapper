@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class IdleDetector extends StatefulWidget {
@@ -13,7 +14,7 @@ class IdleDetector extends StatefulWidget {
   });
 
   @override
-  _IdleDetectorState createState() => _IdleDetectorState();
+  State<IdleDetector> createState() => _IdleDetectorState();
 }
 
 class _IdleDetectorState extends State<IdleDetector> {
@@ -46,20 +47,17 @@ class _IdleDetectorState extends State<IdleDetector> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () {
-        handleUserInteraction();
-      },
-      onPanDown: (details) {
-        handleUserInteraction();
-      },
-      onHorizontalDragEnd: (details) {
-        handleUserInteraction();
-      },
-      onVerticalDragEnd: (details) {
-        handleUserInteraction();
-      },
+    return Listener(
+      behavior: HitTestBehavior.translucent,
+      onPointerDown: (_) => handleUserInteraction(),
+      onPointerMove: (_) => handleUserInteraction(),
+      onPointerUp: (_) => handleUserInteraction(),
+      onPointerCancel: (_) => handleUserInteraction(),
+      onPointerHover: (_) => handleUserInteraction(),
+      onPointerPanZoomEnd: (_) => handleUserInteraction(),
+      onPointerSignal: (_) => handleUserInteraction(),
+      onPointerPanZoomStart: (_) => handleUserInteraction(),
+      onPointerPanZoomUpdate: (_) => handleUserInteraction(),
       child: widget.child,
     );
   }
